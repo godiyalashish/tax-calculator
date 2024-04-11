@@ -1,0 +1,41 @@
+.custom-tooltip {
+    --bs-tooltip-bg: #4C5D6B;
+    opacity: 1;
+  }
+
+  .tooltip.show {
+    opacity: 1;
+}
+
+.input-block{
+  position: relative;
+}
+
+.error-icon {
+  position:absolute;
+  right: 10px;
+  top: 71%;
+  transform: translateY(-50%);
+  color: red;
+  opacity: 0;
+  transition: opacity 0.3s ease-in-out;
+}
+
+.select-error-icon {
+  position:absolute;
+  right: 40px;
+  top: 71%;
+  transform: translateY(-50%);
+  color: red;
+  opacity: 0;
+  transition: opacity 0.3s ease-in-out;
+}
+
+.modal{
+  top:30vh
+}
+
+.from-container{
+  border:solid black 1px;
+  border-radius: 3px;
+}
