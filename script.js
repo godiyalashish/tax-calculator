@@ -17,7 +17,6 @@ document.querySelectorAll("input").forEach((node) => {
 
     if (
       isNaN(inputValue) ||
-      inputValue.trim() === "" ||
       (!inputValue && e.target.name === "annual-income")
     ) {
       errorEle.style.opacity = 1;
@@ -72,19 +71,22 @@ document.getElementById("taxForm").addEventListener("submit", function (e) {
     return;
   }
 
-  let totalIncome = parseFloat(income) + parseFloat(extra) - parseFloat(deductions);
+  let totalIncome = (parseFloat(income) + parseFloat(extra)) - parseFloat(deductions);
+
+  
 
   if (totalIncome < 0) {
     document.getElementById("annualIncomeError").style.opacity = "1";
-    if (extra != 0)
-      document.getElementById("extraIncomeError").style.opacity = "1";
+    if (extra != 0) document.getElementById("extraIncomeError").style.opacity = "1";
     document.getElementById("deductionsError").style.opacity = "1";
     return
   }
 
   
+  console.log('total income', totalIncome)
   
   let tax = 0;
+  var myModal = new bootstrap.Modal(document.getElementById("staticBackdrop"));
   if (totalIncome > 800000) {
     switch (ageGroup) {
       case '1':
@@ -101,9 +103,12 @@ document.getElementById("taxForm").addEventListener("submit", function (e) {
       default:
         break;
     }
+    document.getElementById("finalAmount").innerText =
+   parseFloat(totalIncome - tax).toFixed(2)
+   myModal.show();
+   return
   }
   document.getElementById("finalAmount").innerText =
-   parseFloat(tax).toFixed(2)
-  var myModal = new bootstrap.Modal(document.getElementById("staticBackdrop"));
+   parseFloat(totalIncome).toFixed(2)
   myModal.show();
 });
