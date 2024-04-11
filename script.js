@@ -13,6 +13,7 @@ document.querySelectorAll("input").forEach((node) => {
     const annualIncome = parseFloat(
       document.getElementById("annual-income").value
     );
+    errorEle.style.opacity = 0;
     const extra = parseFloat(document.getElementById("extra-income").value);
 
     if (
@@ -23,6 +24,7 @@ document.querySelectorAll("input").forEach((node) => {
       return;
     } else {
       errorEle.style.opacity = 0;
+
     }
 
     const totalIncome = annualIncome + (extra ? extra : 0);
@@ -34,11 +36,11 @@ document.querySelectorAll("input").forEach((node) => {
         document.getElementById("extraIncomeError").style.opacity = "0";
       }
       document.getElementById("deductionsError").style.opacity = "1";
-    } else {
+    }else if(totalIncome < deductions){
       document.getElementById("annualIncomeError").style.opacity = "0";
-      document.getElementById("extraIncomeError").style.opacity = "0";
       document.getElementById("deductionsError").style.opacity = "0";
-    }
+      document.getElementById("extraIncomeError").style.opacity = "0";
+    } 
   });
 });
 
